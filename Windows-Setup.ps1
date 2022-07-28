@@ -98,7 +98,7 @@ powercfg.exe -change -standby-timeout-dc 0
 powercfg.exe -change -hibernate-timeout-ac 0
 powercfg.exe -change -hibernate-timeout-dc 0
 #Set Mountain Time Zone
-Set-TimeZone -Id "Mountain Standard Time"
+Set-TimeZone -Id "Eastern Standard Time"
 
 #Enable .NET Framework
 Write-Host -ForegroundColor Green "Enable .NET Framework"
@@ -152,9 +152,9 @@ Write-Host -ForegroundColor Green "Setting Account Security Policy:"
 Write-Host -ForegroundColor Green "Account Lockout Threshold: 5 `nAccount Lockout Duration: 30 minutes `nAccount Lockout Counter Restet: 30 minutes"
 net accounts /lockoutthreshold:5
 ##Set account lockout duration
-net accounts /lockoutduration:30
+net accounts /lockoutduration:10
 #Reset acccount lockout counter
-net accounts /lockoutwindow:30
+net accounts /lockoutwindow:10
 #Enable screen saver
 Write-Host -ForegroundColor Green "Further Hardening:"
 Write-Host -ForegroundColor Green "`nScreen Saver Enabled `nScreen Saver Timeout: 15 minutes `nSpecific Screen Saver Set `nPassword Protected Screen Saver `nSceen Saver Cannot Be Changed"
@@ -192,7 +192,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 	choco install chocolatey-core.extension -y
 
 #Install Java
-    choco install jre8 -y
+    #choco install jre8 -y
 
 #Install Firefox
     choco install firefox -y
@@ -218,7 +218,7 @@ Write-Warning "Errors past this point indicate one of two things `n1.The service
 Start-Sleep 15
 
     Write-Host  -ForegroundColor Green "Running O&O Shutup with Recommended Settings"
-    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/cole-bermudez/Windows-Deployment/main/ooshutup10.cfg" -Outfile "C:\Support\Scripts\ooshutup10.cfg"
+    Invoke-WebRequest -Uri "https://raw.githubusercontent.com/benmdevries/Windows-Deployment/main/ooshutup10.cfg" -Outfile "C:\Support\Scripts\ooshutup10.cfg"
     Invoke-WebRequest -Uri "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -outFile "C:\Support\Scripts\OOSU10.exe"
     cd C:\Support\Scripts
     ./OOSU10.exe ooshutup10.cfg /quiet
@@ -591,7 +591,7 @@ $Bloatware = @(
     "Microsoft.MinecraftUWP"
     "Microsoft.GamingServices"
     "Microsoft.WindowsReadingList"
-    #"Microsoft.GetHelp"
+    "Microsoft.GetHelp"
     "Microsoft.Getstarted"
     "Microsoft.Messaging"
     "Microsoft.Microsoft3DViewer"
